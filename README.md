@@ -13,17 +13,17 @@ Fazladan api ekledim(teoride çalışıyor hiç denemedim) her şeyi tek dosya h
 ```console
 apt update & apt upgrade
 apt install git
-git clone https://github.com/allahnumberone/enough-V2
+git clone https://github.com/allahnumberone/enough-V2.git
 cd enough-V2
 python3 main.py
 ```
 
 # One line version (kopyala yapıştır yaparsın direkt)
 ```console
-apt update & apt upgrade & apt install git & git clone https://github.com/allahnumberone/enough-V2 & cd enough-V2 & python3 main.py
+apt update & apt upgrade & apt install git & git clone https://github.com/allahnumberone/enough-V2.git & cd enough-V2 & python3 main.py
 ```
 
-Kodu discord botuna entegre etmeniz kolay 1-2 şey ayarlıyorsun oluyor bitiyor eğer yapamıcaksan kadar script kidsen ekle dcden hallederiz
+Kodu discord botuna entegre etmeniz kolay 1-2 şey ayarlıyorsun oluyor bitiyor eğer yapamıcak kadar script kidsen ekle dcden hallederiz
 
 Pip modullerini otomatik olarak eğer sizde indirilmediyse indirecektir tek yapmanınız gereken main.py'i çalıştırmak
 
