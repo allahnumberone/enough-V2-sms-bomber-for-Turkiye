@@ -17,7 +17,7 @@ python3 main.py
 
 # One line version (kopyala yapıştır yaparsın direkt)
 ```console
-apt update & apt upgrade & git clone https://github.com/allahnumberone/enough-V2 & cd enough-V2 &
+apt update & apt upgrade & git clone https://github.com/allahnumberone/enough-V2 & cd enough-V2 & python3 main.py
 ```
 
 Kodu discord botuna entegre etmedim onuda siz yapın yapımı basit zaten eğer yapamam diyorsanız botun sourcesi burda
