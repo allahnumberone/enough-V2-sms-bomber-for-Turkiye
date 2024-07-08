@@ -2,7 +2,7 @@
 
 <h2>Credits : https://github.com/tingirifistik/Enough-Reborn</h2>
 
-Fazladan api ekledim(teoride çalışıyor hiç denemedim) her şeyi tek dosya haline getirdim 
+Api eklendi ve tek dosya haline getirildi
 
 [![Hits](https://hits.sh/github.com/allahnumberone/enough-V2.svg?label=views&color=cc1111)](https://hits.sh/github.com/allahnumberone/enough-V2/)
 
