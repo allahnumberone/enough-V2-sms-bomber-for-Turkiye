@@ -23,9 +23,7 @@ python3 main.py
 apt update & apt upgrade & apt install git & git clone https://github.com/allahnumberone/enough-V2 & cd enough-V2 & python3 main.py
 ```
 
-Kodu discord botuna entegre etmedim onuda siz yapın yapımı basit zaten eğer yapamam diyorsanız botun sourcesi burda
-
-https://github.com/tingirifistik/Enough-Reborn
+Kodu discord botuna entegre etmeniz kolay 1-2 şey ayarlıyorsun oluyor bitiyor eğer yapamıcaksan kadar script kidsen ekle dcden hallederiz
 
 Pip modullerini otomatik olarak eğer sizde indirilmediyse indirecektir tek yapmanınız gereken main.py'i çalıştırmak isterseniz değişin çalın falan ama credit salın
 
