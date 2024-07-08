@@ -2,6 +2,8 @@
 
 <h2>Credits : https://github.com/tingirifistik/Enough-Reborn</h2>
 
+Fazladan api ekledim(teoride çalışıyor hiç denemedim) her şeyi tek dosya haline getirdim 
+
 [![Hits](https://hits.sh/github.com/allahnumberone/enough-V2.svg?label=views&color=cc1111)](https://hits.sh/github.com/allahnumberone/enough-V2/)
 
 <img src=https://github.com/allahnumberone/enough-V2/assets/165521096/9352982e-6cc4-4ed4-8cac-9171b39e1351 height="200px" width="400px"/>
