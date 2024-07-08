@@ -25,6 +25,8 @@ apt update & apt upgrade & apt install git & git clone https://github.com/allahn
 
 Kodu discord botuna entegre etmeniz kolay 1-2 şey ayarlıyorsun oluyor bitiyor eğer yapamıcaksan kadar script kidsen ekle dcden hallederiz
 
-Pip modullerini otomatik olarak eğer sizde indirilmediyse indirecektir tek yapmanınız gereken main.py'i çalıştırmak isterseniz değişin çalın falan ama credit salın
+Pip modullerini otomatik olarak eğer sizde indirilmediyse indirecektir tek yapmanınız gereken main.py'i çalıştırmak
+
+Çalmak serbest istediğinz gibi fontlarla oynayın credit salın yeter
 
 Soru ve yardım için discord : cyrozer_
