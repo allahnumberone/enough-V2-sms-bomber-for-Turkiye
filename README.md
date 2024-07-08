@@ -12,6 +12,7 @@ Fazladan api ekledim(teoride çalışıyor hiç denemedim) her şeyi tek dosya h
 
 ```console
 apt update & apt upgrade
+apt install git
 git clone https://github.com/allahnumberone/enough-V2
 cd enough-V2
 python3 main.py
@@ -19,7 +20,7 @@ python3 main.py
 
 # One line version (kopyala yapıştır yaparsın direkt)
 ```console
-apt update & apt upgrade & git clone https://github.com/allahnumberone/enough-V2 & cd enough-V2 & python3 main.py
+apt update & apt upgrade & apt install git & git clone https://github.com/allahnumberone/enough-V2 & cd enough-V2 & python3 main.py
 ```
 
 Kodu discord botuna entegre etmedim onuda siz yapın yapımı basit zaten eğer yapamam diyorsanız botun sourcesi burda
