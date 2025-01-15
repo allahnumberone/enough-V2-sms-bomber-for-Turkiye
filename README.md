@@ -2,7 +2,8 @@
 
 <h2>Credits : https://github.com/tingirifistik/Enough-Reborn</h2>
 
-Api eklendi ve tek dosya haline getirildi
+1.00-Api eklendi ve tek dosya haline getirildi
+1.02-Kod optimize edildi ve thread sistemi eklendi
 
 [![Hits](https://hits.sh/github.com/allahnumberone/enough-V2.svg?label=views&color=cc1111)](https://hits.sh/github.com/allahnumberone/enough-V2/)
 
