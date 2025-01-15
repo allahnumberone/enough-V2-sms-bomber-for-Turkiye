@@ -2,7 +2,7 @@
 
 <h2>Credits : https://github.com/tingirifistik/Enough-Reborn</h2>
 
-1.00-Api eklendi ve tek dosya haline getirildi
+1.01-Api eklendi ve tek dosya haline getirildi
 
 1.02-Kod optimize edildi ve thread sistemi eklendi
 
